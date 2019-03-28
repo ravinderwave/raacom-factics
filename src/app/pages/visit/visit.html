@@ -1,0 +1,30 @@
+<div class="widgets">
+
+        <div class="row">
+          <div class="col-md-12">
+            <div ba-panel ba-panel-title="Gallery Visit" ba-panel-class="with-scroll">
+              <div class="col-md-3 tabset-group" ng-repeat="data in galleryvisit" ba-panel>
+             
+					<div class="kameleon-icon-tabs kameleon-icon with-round-bg danger"><img ng-src="data:image/png;base64,{{data.image_base}}" width="50px" height="50px"></div>
+					<p>
+						<strong>Zone : </strong> {{data.zone}}
+					</p> 
+					<p>
+					  <strong><strong>Gender: </strong>{{data.gender}}
+					</p> 
+					<p>
+					  <strong>Ethnicity: </strong>{{data.ethnicity}}
+					</p> 
+					<p>
+						<strong>Year of Birth : </strong>{{data.yob}}
+					</p> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      
+      
