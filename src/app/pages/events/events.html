@@ -5,10 +5,10 @@
         <uib-tabset active="$tabSetStatus.activeTab">
             <uib-tab heading="Unattended">
                 <div ba-panel ba-panel-title="Unattended" ba-panel-class="with-scroll">
-                    <div class="col-md-3 tabset-group" ng-repeat="data in unattended" ba-panel ba-panel-class="panel-primary"
+                    <div class="col-xlg-3 col-md-4 col-sm-6 tabset-group" ng-repeat="data in unattended" ba-panel ba-panel-class="panel-primary"
 		ba-panel-title="<span class='i-{{data.emotion}}'></span> Zone :{{data.zone}} <span class='pull-right'>YOB : {{data.yob}}</span>" >
                         
-                        <div class="form-group"><img ng-src="data:image/png;base64,{{data.image_base}}" class="img-thumbnail" style="width: 100%; height: auto"></div>
+                        <div class="form-group"><img ng-src="data:image/png;base64,{{data.image_base}}" class="img-thumbnail" style="width: 100%; height: auto; max-height: 250px; object-fit: contain;"></div>
                          
                          <p>
                              <strong>Gender: </strong> {{data.gender}}
@@ -22,7 +22,7 @@
             </uib-tab>
             <uib-tab heading="Gallery Visit">
                 <div ba-panel ba-panel-title="Gallery Visit" ba-panel-class="with-scroll">
-                    <div class="col-md-3 tabset-group" ng-repeat="data1 in galleryvisit" ba-panel ba-panel-class="panel-primary"
+                    <div class="col-xlg-3 col-md-4 col-sm-6 tabset-group" ng-repeat="data1 in galleryvisit" ba-panel ba-panel-class="panel-primary"
 		ba-panel-title="<span class='i-{{data1.emotion}}'></span> Zone :{{data1.zone}} <span class='pull-right'>YOB : {{data1.name}}</span>" >
                     
 

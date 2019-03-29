@@ -18,7 +18,7 @@
   }
   @media screen and (min-width: 700px) and (max-width: 1325px)  {
     .pie-chart-item-container {
-      width: 50%;
+      width: 33%;
     }
   }
   @media screen and (max-width: 700px)  {
@@ -38,7 +38,7 @@
   }
   @media screen and
     (min-width: 1325px) and (max-width: 1650px),
-    (min-width: 700px) and (max-width: 830px),
+    (min-width: 700px) and (max-width: 900px),
     (max-width: 400px) {
     .chart-icon {
       display: none;
