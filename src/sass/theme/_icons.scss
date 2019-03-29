@@ -21,6 +21,10 @@
 @include svg-icon-class('money', 80, 80);
 @include svg-icon-class('person', 80, 80);
 @include svg-icon-class('refresh', 80, 80);
+@include svg-icon-class('angry', 21, 21);
+@include svg-icon-class('sad', 21, 21);
+@include svg-icon-class('happy', 21, 21);
+@include svg-icon-class('none', 21, 21);
 
 
 @mixin png-icon($url, $width, $height) {
@@ -32,9 +36,9 @@
 }
 
 @mixin png-icon-class($iconName, $width, $height) {
-  .#{'i-' + $iconName} {
-    @include png-icon($images-root + $iconName + '.png', $width, $height);
+  .#{'emoji-' + $iconName} {
+    @include png-icon($icons-root + $iconName + '.png', $width, $height);
   }
 }
 
-//@include icon-png-class('arrival-icon', 11, 11);
+//@include icon-png-class('angry', 11, 11);

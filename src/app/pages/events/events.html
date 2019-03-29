@@ -5,32 +5,31 @@
         <uib-tabset active="$tabSetStatus.activeTab">
             <uib-tab heading="Unattended">
                 <div ba-panel ba-panel-title="Unattended" ba-panel-class="with-scroll">
-                    <div class="col-md-3 tabset-group" ng-repeat="data in unattended"
-                                    ba-panel>
+                    <div class="col-md-3 tabset-group" ng-repeat="data in unattended" ba-panel ba-panel-class="panel-primary"
+		ba-panel-title="<span class='i-{{data.emotion}}'></span> Zone :{{data.zone}} <span class='pull-right'>YOB : {{data.yob}}</span>" >
+                        
                         <div class="form-group"><img ng-src="data:image/png;base64,{{data.image_base}}" class="img-thumbnail" style="width: 100%; height: auto"></div>
-                        <p>
-                          <strong >Zone : </strong> {{data.zone}}
-                         </p> 
+                         
                          <p>
                              <strong>Gender: </strong> {{data.gender}}
                                          </p> 
                                          <p>
                              <strong>Ethnicity: </strong> {{data.ethnicity}}
                                          </p> 
-                         <p>
-                             <strong>Year of Birth : </strong> {{data.yob}}
-                         </p> 
+                         
                    </div>
                 </div>
             </uib-tab>
             <uib-tab heading="Gallery Visit">
                 <div ba-panel ba-panel-title="Gallery Visit" ba-panel-class="with-scroll">
-                    <div class="col-md-3 tabset-group" ng-repeat="data1 in galleryvisit" ba-panel>
+                    <div class="col-md-3 tabset-group" ng-repeat="data1 in galleryvisit" ba-panel ba-panel-class="panel-primary"
+		ba-panel-title="<span class='i-{{data1.emotion}}'></span> Zone :{{data1.zone}} <span class='pull-right'>YOB : {{data1.name}}</span>" >
+                    
 
                           <div class="form-group"><img ng-src="data:image/png;base64,{{data1.image_base}}"  class="img-thumbnail" style="width: 100%; height: auto"></div>
                           <p>
-                            <strong>Zone : </strong> {{data1.zone}}
-                          </p> 
+                            <strong>Gallery : </strong> {{data1.gallery}}
+                          </p>
                           <p>
                             <strong>Gender: </strong>{{data1.gender}}
                           </p> 
@@ -38,7 +37,7 @@
                             <strong>Ethnicity: </strong>{{data1.ethnicity}}
                           </p> 
                           <p>
-                            <strong>Year of Birth : </strong>{{data1.yob}}
+                            <strong>Age : </strong>{{data1.age}}
                           </p> 
                     </div>
                 </div>
@@ -49,7 +48,3 @@
     </div>
   </div>
 </div>
-
-
-
-

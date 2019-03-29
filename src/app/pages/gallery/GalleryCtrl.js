@@ -53,7 +53,7 @@
 
 
          //to delete a case 
-        $scope.removeGallery = function(caseId){
+        $scope.removeGallery = function(caseId,idx){
             
             var jsons=JSON.stringify({ 
               apiKey:"445dcfa295847ebbb77011ab264b4aa9",
@@ -73,16 +73,18 @@
              }
           })
           
-          //console.log(jsons);
+          console.log(jsons);
   
           var onSuccess = function (data, status, headers, config) {
             
-                location.reload();
+                //location.reload();
+                $scope.records.splice(idx, 1);
             
           };
   
           var onError = function (data, status, headers, config) {
-            location.reload();
+            //location.reload();
+            $scope.records.splice(idx, 1);
           }
   
          $http.post('http://raacom-factics-api.com/gallery', jsons)
@@ -94,9 +96,11 @@
         }
         
         $scope.updateGallery = function(user){
-
+            
+           
+            
             $scope.uploadFile = function(files) {
-                console.log(files[0]);
+                //console.log(files[0]);
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     $scope.image=e.target.result;
@@ -104,6 +108,8 @@
                 };
                 reader.readAsDataURL(files[0]);
             }
+            
+           
             
             var jsons=JSON.stringify({ 
                 apiKey:"445dcfa295847ebbb77011ab264b4aa9",
@@ -146,7 +152,7 @@
                 }
             })
             
-            //console.log(jsons);
+            console.log(jsons);
 
             $http.post('http://raacom-factics-api.com/gallery', jsons).
             then(function(response) {
@@ -228,7 +234,6 @@
                    }
                 }
             });
-            
             
             $http.post('http://raacom-factics-api.com/gallery', data).
             then(function(response) {

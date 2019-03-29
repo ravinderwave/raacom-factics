@@ -11,7 +11,8 @@
           <input type="file" id="input01" name="image" ng-model="image" onchange="angular.element(this).scope().uploadFile(this.files)">
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" id="input02" name="caseID" ng-model="caseID" placeholder="Case Id">
+          <input type="text" class="form-control" id="input02" name="caseID"  ng-change="caseExist(caseID)" ng-model="caseID"  placeholder="Case Id">
+          <p>{{myCaseExistStatus}}</p>
         </div>
         <div class="form-group">
           <input type="text" class="form-control" id="input04" name="nameCase" ng-model="nameCase" placeholder="Name">

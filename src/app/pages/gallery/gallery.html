@@ -27,7 +27,7 @@
                             <span data-ng-hide="editMode">
                                 <img src="data:image/png;base64,{{user.image}}" width="50px" height="50px" />
                             </span>
-                            <input type="file" data-ng-show="editMode" data-ng-model="user.image" data-ng-required class="editable-input form-control ng-pristine" ng-files="getTheFiles($files)"/>
+                            <input type="file" data-ng-show="editMode" data-ng-model="user.image" data-ng-required onchange="uploadEditFile(this.files)" class="editable-input form-control ng-pristine"/>
                         </td>
                         <td>
                             <span data-ng-hide="editMode">{{user.caseID}}</span>
@@ -43,7 +43,7 @@
                         </td>
                         <td>
                             <button type="submit" data-ng-hide="editMode" data-ng-click="editMode = true" class="btn btn-primary editable-table-button btn-xs"><i class="fa fa-pencil"></i>Edit</button>
-                            <button class="btn btn-danger editable-table-button btn-xs" data-ng-hide="editMode" data-ng-click="editMode = false" ng-click="removeGallery(user.caseID)"><i class="fa fa-trash"></i> Delete</button>
+                            <button class="btn btn-danger editable-table-button btn-xs" data-ng-hide="editMode"  ng-click="removeGallery(user.caseID)"><i class="fa fa-trash"></i> Delete</button>
                             <button type="submit" data-ng-show="editMode" data-ng-click="updateGallery(user)" class="btn btn-primary editable-table-button btn-xs">Save</button>
                             <button type="submit" data-ng-show="editMode" data-ng-click="editMode = false" class="btn btn-default editable-table-button btn-xs">Cancel</button>
                         </td>

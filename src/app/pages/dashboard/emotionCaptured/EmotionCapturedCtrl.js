@@ -61,7 +61,7 @@
 				
 				percentage.push(Math.round(per));
             }
-            console.log(array1);
+            //console.log(array1);
             emotion_data(unique, emotions.length, array1, percentage);  
         });
         
@@ -72,14 +72,14 @@
                     {
                         data: array,
                         backgroundColor: [
-                            dashboardColors.blueStone,
-                            dashboardColors.surfieGreen,
-                            dashboardColors.silverTree
+                            dashboardColors.silverTree,
+                            dashboardColors.gossip,
+                            dashboardColors.surfieGreen
                         ],
                         hoverBackgroundColor: [
-                            colorHelper.shade(dashboardColors.blueStone, 15),
-                            colorHelper.shade(dashboardColors.surfieGreen, 15),
-                            colorHelper.shade(dashboardColors.silverTree, 15)
+                            colorHelper.shade(dashboardColors.silverTree, 15),
+                            colorHelper.shade(dashboardColors.gossip, 15),
+                            colorHelper.shade(dashboardColors.surfieGreen, 15)
                         ],
                         percentage: percentage
                     }
@@ -88,7 +88,7 @@
             
             $scope.total = total_expressions;
             
-            var ctx = document.getElementById('chart-area').getContext('2d');
+            var ctx = document.getElementById('trafficchart-area').getContext('2d');
             window.myDoughnut = new Chart(ctx, {
                 type: 'doughnut',
                 data: $scope.doughnutData,

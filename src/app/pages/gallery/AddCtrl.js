@@ -25,12 +25,49 @@ addApp.controller("AddCtrl", function ($scope, $http,$rootScope) {
     
     //4. copy originalStudent to student. student will be bind to a form 
     $scope.case = angular.copy($scope.originalCase);
+
+    $scope.caseExist=function(myCaseId){
+        console.log(myCaseId);
+        var jsons=JSON.stringify({
+            "apiKey":"asdasdasdasdasda",
+            "command":"caseExist",
+            "entity": "gallery",
+            "viewData":{
+               "fieldSet":{
+                  "caseID":myCaseId
+               },
+               "whereFieldset":[
+               ],
+               "paging":{
+                  "Offset":0,
+                  "Limit":10
+               }
+            }
+         });
+         console.log(jsons);
+         $http.post('http://raacom-factics-api.com/gallery', jsons)
+            .then(function(response){
+                var data=response.data
+                if(data.exists==true){
+                    console.log(data.exists);
+                    $scope.myCaseExistStatus='The case id already exist. Please use another id';
+                }else{
+                    $scope.myCaseExistStatus='';
+                }
+            });
+
+    }
+
     //5. create submitStudentForm() function. This will be called when user submits the form
     $scope.submitAddForm = function () {
         //console.log($scope.caseID);
+        var command='addCase';
+        if($scope.caseID){
+            command='Insert';
+        }
         var jsons=JSON.stringify({ 
             apiKey:"445dcfa295847ebbb77011ab264b4aa9",
-            command:"Insert",
+            command:command,
             lang:"en",
             deviceId:"en2",
             viewData:{
@@ -88,6 +125,7 @@ addApp.controller("AddCtrl", function ($scope, $http,$rootScope) {
 
     };
 
+    
     //6. create resetForm() function. This will be called on Reset button click.  
     $scope.resetForm = function () {
         $scope.student = angular.copy($scope.OriginalStudent);

@@ -170,7 +170,10 @@ $panel-heading-font-size: 16px;
 .light-text {
   font-weight: $font-light;
 }
-
+.img-thumbnail {
+	background: $sidebar;
+	border: 0 none;
+}
 /*
 .panel-group .panel {
   border-radius: 0;
