@@ -14,20 +14,20 @@
 
   // main functional color scheme
   var colorScheme = {
-    primary: '#072e7d',
+    primary: '#25678b',
     info: '#1ebbd7',
-    success: '#90b900',
-    warning: '#dfb81c',
-    danger: '#e85656',
+    success: '#59ad2f',
+    warning: '#FFA91F',
+    danger: '#AF2F2F',
   };
 
   // dashboard colors for charts
   var dashboardColors = {
-    blueStone: '#000c62',
-    surfieGreen: '#620e81',
-    silverTree: '#6e77ba',
-    gossip: '#a1bcf2',
-    white: '#105fc4',
+    blueStone: '#59ad2f',
+    surfieGreen: '#25678b',
+    silverTree: '#FFA91F',
+    gossip: '#AF2F2F',
+    white: 'rgba(255,255,255,0.7)',
   };
 
   angular.module('BlurAdmin.theme')

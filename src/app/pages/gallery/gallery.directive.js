@@ -9,11 +9,18 @@
       .directive('gallery', gallery);
 
   /** @ngInject */
-  function gallery() {
+  function gallery($parse){ 
+        function fn_link(scope, element, attrs) {
+            var onChange = $parse(attrs.ngFiles);
+            element.on('change', function (event) {
+                onChange(scope, { $files: event.target.files });
+            });
+        };
     return {
       restrict: 'E',
       controller: 'GalleryCtrl',
-      templateUrl: 'app/pages/gallery/gallery.html'
+      templateUrl: 'app/pages/gallery/gallery.html',
+      link: fn_link
     };
   }
 })();

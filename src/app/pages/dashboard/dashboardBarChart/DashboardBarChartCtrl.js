@@ -26,7 +26,7 @@
             "entity": "gallery",
             "viewData":{
                "fieldSet":{
-                  "id":"Ethnicity"
+                  
                },
                "whereFieldset":[
                ],
@@ -39,12 +39,20 @@
     
         $http.post('http://raacom-factics-api.com/charts', data, config).
             then(function(response) {
-                var maledata = response.data.male;
-                var femaledata = response.data.female; 
+                //console.log(response);
+                var data=response.data;
+                var age_1=data["0.0 - 20"];
+                var age_2=data["21 - 40"];
+                var age_3=data["41 - 60"];
+                var age_4=data["61 - 80"];
+                var age_5=data["81 - 100"];
+                //console.log(age_1);
+//                var maledata = response.data.male;
+//                var femaledata = response.data.female; 
                 var timeData = response.data.time;
                 var value = [];
                 for(var i=0; i<timeData.length ;i++){
-                    value.push({y:timeData[i], a:maledata[i], b:femaledata[i]});
+                    value.push({y:timeData[i], a:age_1[i], b:age_2[i],c:age_3[i],d:age_4[i],e:age_5[i]});
                 }
                 var morris_value1 = JSON.stringify(value);
         

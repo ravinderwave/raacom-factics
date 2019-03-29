@@ -2,12 +2,12 @@
 var addApp = angular.module('BlurAdmin.pages.gallery');
 
 //2. create controller
-addApp.controller("AddCtrl", function ($scope, $http) {
+addApp.controller("AddCtrl", function ($scope, $http,$rootScope) {
     //3. attach originalStudent model object
     $scope.originalCase = {
         caseID: '',
         name: '',
-        gallery: 'WatchList',
+        gallery: $rootScope.galleryID,
         property: '',
         image: '',
     };
@@ -40,7 +40,7 @@ addApp.controller("AddCtrl", function ($scope, $http) {
                         values:[
                             {
                                 name:"gallery",
-                                value:"WatchList"
+                                value:$rootScope.galleryID
                             },
                             {
                                 name:"name",
@@ -69,7 +69,7 @@ addApp.controller("AddCtrl", function ($scope, $http) {
             }
         })
         
-        //console.log(jsons);
+        console.log(jsons);
 
         var onSuccess = function (data, status, headers, config) {
           

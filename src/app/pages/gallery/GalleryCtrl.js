@@ -9,13 +9,14 @@
      // .controller('GalleryCtrl', GalleryCtrl);
 
   /** @ngInject */
-  soClean.controller('GalleryCtrl', ['$scope', '$http', function ($scope, $http) {
+  soClean.controller('GalleryCtrl', ['$scope', '$http','$rootScope', function ($scope, $http,$rootScope) {
             
             var config = {
                 headers : {
                     'Content-Type': 'application/json;'
                 }
             }
+            $rootScope.galleryID='DefaultGallery'
             var data = JSON.stringify({
                 "apiKey":"asdasdasdasdasda",
                 "command":"existingCases",
@@ -23,7 +24,7 @@
                 "entity": "gallery",
                 "viewData":{
                    "fieldSet":{
-                      "galleryID":"WatchList"
+                      "galleryID":$rootScope.galleryID
                    },
                    "whereFieldset":[
                    ],
@@ -41,6 +42,16 @@
                 //return $scope.result = response.data;
             }); 
             
+            $scope.updateRecord=function(caseRecords,galleryRecord){
+                $scope.records=caseRecords;
+                $rootScope.galleryID=galleryRecord;
+              }
+      
+              $rootScope.$on('newCases', function(event, caseRecords,galleryRecord) {
+                $scope.updateRecord(caseRecords,galleryRecord);
+              });
+
+
          //to delete a case 
         $scope.removeGallery = function(caseId){
             
@@ -83,17 +94,9 @@
         }
         
         $scope.updateGallery = function(user){
-            
-            $scope.originalCase = {
-                caseID: '',
-                name: '',
-                gallery: 'WatchList',
-                property: '',
-                image: '',
-            };
-            
+
             $scope.uploadFile = function(files) {
-                //console.log(files[0]);
+                console.log(files[0]);
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     $scope.image=e.target.result;
@@ -102,21 +105,19 @@
                 reader.readAsDataURL(files[0]);
             }
             
-            $scope.case = angular.copy($scope.originalCase);
-            
             var jsons=JSON.stringify({ 
                 apiKey:"445dcfa295847ebbb77011ab264b4aa9",
-                command:"Insert",
+                command:"updateCase",
                 lang:"en",
                 deviceId:"en2",
                 viewData:{
                     fieldSet:{
-                        caseID:$scope.caseID,
+                        caseID:user.caseID,
                         properties:{
                             values:[
                                 {
                                     name:"gallery",
-                                    value:"WatchList"
+                                    value:$rootScope.galleryID
                                 },
                                 {
                                     name:"name",
@@ -130,7 +131,7 @@
                         }
                     },
                     whereFieldSet:{
-                        caseId:$scope.caseID,
+                        caseId:user.caseID,
                         imgSet:{
                           images:{
                             binaryImg:user.image
@@ -145,7 +146,14 @@
                 }
             })
             
-            console.log(jsons);
+            //console.log(jsons);
+
+            $http.post('http://raacom-factics-api.com/gallery', jsons).
+            then(function(response) {
+              location.reload();
+              //$scope.$emit('newCases', response.data,id);
+
+            }); 
         }
 
   }]);
@@ -175,11 +183,7 @@
 
   /** @ngInject */
   function GalleryListCtrl($scope, $http) {
-        var config = {
-            headers : {
-                'Content-Type': 'application/json;'
-            }
-        }
+        
         var data = JSON.stringify({
             "apiKey":"445dcfa295847ebbb77011ab264b4aa9",
             "command":"Insert",
@@ -198,7 +202,7 @@
             }
         });
         
-        $http.get('http://raacom-factics-api.com/galleryList', data, config).
+        $http.get('http://raacom-factics-api.com/galleryList', data).
         then(function(response) {
            // console.log(response.data);
             $scope.list=response.data;
@@ -206,11 +210,7 @@
         
         $scope.selectTab = function(id){
             
-            var config = {
-                headers : {
-                    'Content-Type': 'application/json;'
-                }
-            }
+            
             var data = JSON.stringify({
                 "apiKey":"asdasdasdasdasda",
                 "command":"existingCases",
@@ -229,9 +229,13 @@
                 }
             });
             
-            $http.post('http://raacom-factics-api.com/gallery', data, config).
+            
+            $http.post('http://raacom-factics-api.com/gallery', data).
             then(function(response) {
-                $scope.records=response.data;
+              
+              console.log(response.data);
+              $scope.$emit('newCases', response.data,id);
+
             }); 
         }
     }

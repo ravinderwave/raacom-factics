@@ -6,12 +6,13 @@
   'use strict';
 
   angular.module('BlurAdmin.pages.dashboard')
-      .controller('TrafficChartCtrl', TrafficChartCtrl);
+      .controller('EmotionCapturedCtrl', EmotionCapturedCtrl);
 
   /** @ngInject */
-  function TrafficChartCtrl($scope, baConfig, colorHelper, $http) {
+  function EmotionCapturedCtrl($scope, baConfig, colorHelper, $http) {
 
       $scope.transparent = baConfig.theme.blur;
+	  
       var dashboardColors = baConfig.colors.dashboard;
       
       var config = {
@@ -22,25 +23,25 @@
 
         var data = JSON.stringify({
             "apiKey":"445dcfa295847ebbb77011ab264b4aa9",
-            "command":"Insert",
-            "lang":"en",
-            "deviceId":"en",
-            "viewData":{
-               "fieldSet":{
-                 "name":"Test"
-               },
-               "whereFieldset":[
-               ],
-               "paging":{
-                  "Offset":0,
-                  "Limit":10
-               }
-            }
+			"command":"Insert",
+			"lang":"en",
+			"deviceId":"en",
+			"viewData":{
+				"fieldSet":{
+					"name":"Test"
+				},
+				"whereFieldset":[
+				],
+				"paging":{
+					"Offset":0,
+					"Limit":10
+				}
+			}
         });
         var array=[];
         var array1=[];
 		var percentage=[];
-        $http.get('http://raacom-factics-api.com/captured', data, config).
+        $http.get('http://raacom-factics-api.com/detected', data, config).
         then(function(response) {
             var emotions = response.data;
             
@@ -60,7 +61,7 @@
 				
 				percentage.push(Math.round(per));
             }
-            
+            console.log(array1);
             emotion_data(unique, emotions.length, array1, percentage);  
         });
         
