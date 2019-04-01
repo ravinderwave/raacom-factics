@@ -9,7 +9,7 @@
      // .controller('GalleryCtrl', GalleryCtrl);
 
   /** @ngInject */
-  soClean.controller('GalleryCtrl', ['$scope', '$http','$rootScope', '$element', function ($scope, $http,$rootScope, $element) {
+  soClean.controller('GalleryCtrl', ['$scope', '$http','$rootScope', function ($scope, $http,$rootScope) {
             
             var config = {
                 headers : {
@@ -73,7 +73,7 @@
              }
           })
           
-          //console.log(jsons);
+          console.log(jsons);
   
           var onSuccess = function (data, status, headers, config) {
             
@@ -96,10 +96,11 @@
         }
         
         $scope.updateGallery = function(user){
-
+            
+           
+            
             $scope.uploadFile = function(files) {
-                var formData = new FormData();
-                console.log(files[0]);
+                //console.log(files[0]);
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     $scope.image=e.target.result;
@@ -107,6 +108,8 @@
                 };
                 reader.readAsDataURL(files[0]);
             }
+            
+           
             
             var jsons=JSON.stringify({ 
                 apiKey:"445dcfa295847ebbb77011ab264b4aa9",
@@ -149,14 +152,14 @@
                 }
             })
             
-            //console.log(jsons);
+            console.log(jsons);
 
-//            $http.post('http://raacom-factics-api.com/gallery', jsons).
-//            then(function(response) {
-//              location.reload();
-//              //$scope.$emit('newCases', response.data,id);
-//
-//            }); 
+            $http.post('http://raacom-factics-api.com/gallery', jsons).
+            then(function(response) {
+              location.reload();
+              //$scope.$emit('newCases', response.data,id);
+
+            }); 
         }
 
   }]);

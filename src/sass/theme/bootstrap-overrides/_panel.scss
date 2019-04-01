@@ -38,19 +38,57 @@ $panel-heading-font-size: 16px;
       overflow-y: auto;
     }
   }
+  
+  
 }
 
 .panel.panel-blur {
   $blurredBgUrl: $images-root + 'blur-bg-blurred.jpg';
-  background: url($blurredBgUrl);
+  background: rgba(0,0,0,.17);
   transition: none;
   background-attachment: fixed;
+  &.no-padd {
+	background: rgba(255,255,255,.10);
+  }
 }
 
 .panel {
   > .panel-body {
     padding: 15px 22px;
     height: 100%;
+	position: relative;
+	
+	.panel-header {
+		border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+		box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.12);
+		$vertical-padding: ($panel-title-height - $panel-heading-font-size) / 2;
+		padding: $vertical-padding 20px;
+		background: rgba(0,0,0,.12);
+	}
+	.panel_data {
+		padding: 15px;
+		
+		p {
+			margin: 0;
+			line-height: 2.2;
+		}
+	}
+	.top_button {
+		position: absolute;
+		top: -10px;
+		right: -10px;
+		opacity: 0.7;
+		border-radius: 50%;
+		background: rgba(255,255,255,.7);
+		color: $danger;
+		
+		&:hover {
+			opacity: 1;
+		}
+	}
+  }
+  &.no-padd > .panel-body {
+	padding: 0;
   }
   > .panel-heading {
     color: $default-text;
@@ -60,6 +98,7 @@ $panel-heading-font-size: 16px;
   > .panel-footer {
     color: $default-text;
   }
+  
 }
 
 .panel-heading, .panel-footer {

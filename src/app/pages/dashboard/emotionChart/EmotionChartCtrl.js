@@ -24,13 +24,13 @@
                   data: [20, 11, 9],
                   backgroundColor: [
                       dashboardColors.blueStone,
-                      dashboardColors.surfieGreen,
+                      dashboardColors.white,
                       dashboardColors.silverTree
 
                   ],
                   hoverBackgroundColor: [
                       colorHelper.shade(dashboardColors.blueStone, 15),
-                      colorHelper.shade(dashboardColors.surfieGreen, 15),
+                      colorHelper.shade(dashboardColors.white, 15),
                       colorHelper.shade(dashboardColors.silverTree, 15)
                   ],
                   percentage: [87, 22, 70]

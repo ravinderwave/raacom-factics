@@ -4,34 +4,40 @@
         <div class="mail-navigation-container" ng-class="{'expanded' : !tabCtrl.navigationCollapsed}">
                 <div ng-app="BlurAdmin.pages.gallery" ng-controller="GalleryListCtrl">
                         <div ng-repeat="t in list" ui-sref-active="active" class="mail-navigation"
-                                 ng-click="selectTab(t.galleryid)">
+                                 ng-click="selectTab(t.galleryid)" >
                           {{t.displayname}}
                         </div>
                 </div>
         </div>
         <div class="side-message-navigation ng-scope expanded">
-            <div class="add-row-editable-table mail-messages-control side-message-navigation-item">
-                <button type="button" class="btn btn-info" data-toggle="modal" ng-app="BlurAdmin.pages.gallery" ng-controller="ModalsPageCtrl" ng-click="open('app/pages/gallery/galleryModal.html')"><i class="fa fa-plus"></i> Add Visitors</button>
+            <div class="add-row-editable-table clearfix">
+                <button type="button" class="btn btn-info pull-right" data-toggle="modal" ng-app="BlurAdmin.pages.gallery" ng-controller="ModalsPageCtrl" ng-click="open('app/pages/gallery/galleryModal.html')"><i class="fa fa-plus"></i> Add Visitors</button>
             </div>
             <div class="messages">
-		<table class="table  table-hover " ng-controller="GalleryCtrl">
+			<table class="table table-hover gallery_table" ng-controller="GalleryCtrl">
+				<thead>
                     <tr>
-                        <td>Image</td>
-                        <td>Case Id</td>
-                        <td>Name</td>
-                        <td>Property</td>
-                        <td>Action</td>
+                        <th width="10%">Image</th>
+                        <th width="25%">Case Id</th>
+                        <th width="30%">Name</th>
+                        <th>Property</th>
+                        <th width="10%">Action</th>
                     </tr>
+				</thead>
+				<tbody>
                     <tr ng-repeat="user in records" ng-init="i = $index; data = records">
                         <td>
                             <span data-ng-hide="editMode">
-                                <img src="data:image/png;base64,{{user.image}}" width="50px" height="50px" />
+                                <img src="data:image/png;base64,{{user.image}}" style="width: auto; height: 70px; margin: 5px;" />
                             </span>
-                            <input type="file" data-ng-show="editMode" data-ng-model="user.image" data-ng-required onchange="angular.element(this).scope().uploadFile(this.files)" class="editable-input form-control ng-pristine"/>
+							<div class="upload-btn-wrapper" data-ng-show="editMode">
+							  <button class="btn btn-default">Upload a file</button>
+							  <input type="file" data-ng-model="user.image" data-ng-required onchange="uploadEditFile(this.files)" class="upload_btn ng-pristine"/>
+							</div>
+                            
                         </td>
                         <td>
-                            <span data-ng-hide="editMode">{{user.caseID}}</span>
-                            <input type="text" data-ng-show="editMode" data-ng-model="user.caseID" data-ng-required class="editable-input form-control ng-pristine" />
+                            <span>{{user.caseID}}</span>
                         </td>
                         <td>
                             <span data-ng-hide="editMode">{{user.name }}</span>
@@ -41,13 +47,14 @@
                             <span data-ng-hide="editMode">{{user.property }}</span>
                             <input type="text" data-ng-show="editMode" data-ng-model="user.property" data-ng-required class="editable-input form-control ng-pristine" />
                         </td>
-                        <td>
-                            <button type="submit" data-ng-hide="editMode" data-ng-click="editMode = true" class="btn btn-primary editable-table-button btn-xs"><i class="fa fa-pencil"></i>Edit</button>
-                            <button class="btn btn-danger editable-table-button btn-xs" data-ng-hide="editMode"  ng-click="removeGallery(user.caseID)"><i class="fa fa-trash"></i> Delete</button>
+                        <td >
+                            <button type="submit"  data-ng-hide="editMode" data-ng-click="editMode = true" class="btn btn-info btn-sm"  data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></button>
+                            <button class="btn btn-danger btn-sm"  data-ng-hide="editMode" ng-click="removeGallery(user.caseID)" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i> </button>
                             <button type="submit" data-ng-show="editMode" data-ng-click="updateGallery(user)" class="btn btn-primary editable-table-button btn-xs">Save</button>
                             <button type="submit" data-ng-show="editMode" data-ng-click="editMode = false" class="btn btn-default editable-table-button btn-xs">Cancel</button>
                         </td>
                     </tr>
+				</tbody>
             </table>
         </div>
         </div>

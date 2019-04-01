@@ -4,6 +4,7 @@
     & > tr {
       & > th {
         border-bottom: 1px solid $border-light;
+		background: rgba(0,0,0,.1);
         white-space: nowrap;
         &:first-child {
           text-align: center;
@@ -23,6 +24,7 @@
         padding: 0px 8px;
         line-height: 35px;
         border-top: 1px solid $border-light;
+		vertical-align: middle;
         &:first-child {
           text-align: center;
         }
@@ -31,6 +33,37 @@
         }
       }
     }
+  }
+  
+  &.gallery_table > tbody {
+		& td {
+			height: 72px;
+			
+			.input-group {
+				margin: 0;				
+				.form-control {
+					width: 89%;
+				}
+				button.btn.btn-default {
+					height: 33px;
+					vertical-align: top;
+					width: 11%;
+					padding: 0;
+					text-align: center;
+				}
+			}
+		}
+		.upload-btn-wrapper {
+		  position: relative;
+		  overflow: hidden;
+		  display: inline-block;
+		}
+		.upload-btn-wrapper input[type=file] {
+		  position: absolute;
+		  left: 0;
+		  top: 0;
+		  opacity: 0;
+		}
   }
 }
 

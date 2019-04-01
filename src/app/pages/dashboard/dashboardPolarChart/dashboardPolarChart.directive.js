@@ -13,7 +13,7 @@
     return {
       restrict: 'E',
       controller: 'DashboardPolarChartCtrl',
-      templateUrl: 'app/pages/dashboard/dashboardPolarChart/dashboardPolarChart.html'
+      templateUrl: 'app/pages/dashboard/dashboardPolarChart/DashboardPolarChart.html'
     };
   }
 })();

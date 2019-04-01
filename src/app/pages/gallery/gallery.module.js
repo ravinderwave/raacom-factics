@@ -12,6 +12,7 @@
           templateUrl: 'app/pages/gallery/gallery.html',
           title: 'Gallery',
           sidebarMeta: {
+			  icon: 'fa fa-picture-o',
             order: 800,
           },
         });

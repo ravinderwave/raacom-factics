@@ -1,11 +1,11 @@
+<video-stream></video-stream>
 <dashboard-pie-chart></dashboard-pie-chart>
-
 <div class="row">
-    <div class="col-md-12">
-      <div ba-panel
+    <div class="col-lg-12 col-sm-6 col-md-12">
+		<div ba-panel
        ba-panel-title="Gender Visit Insight"
-       ba-panel-class="medium-panel panel-blur">
-    <dashboard-morris></dashboard-morris>
+       ba-panel-class="panel-blur">
+		<dashboard-bar-chart></dashboard-bar-chart>
       </div>
     </div>
 </div>
@@ -17,37 +17,36 @@
        ba-panel-class="medium-panel traffic-panel panel-blur">
     <traffic-chart></traffic-chart>
   </div>
-  <div class="col-lg-6 col-md-12 col-sm-12"
-       ba-panel
-       ba-panel-title="Emotion in Gallery Detected"
-       ba-panel-class="medium-panel traffic-panel panel-blur">
-    <emotion-captured></emotion-captured>
+  <div class="col-lg-6 col-md-12 col-sm-12" 
+	   ba-panel
+	   ba-panel-title="Live Streaming"
+	   ba-panel-class="medium-panel panel-blur">
+			<blur-feed></blur-feed>
+		  </div>
   </div>
 </div>
 
 <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12"
-       ba-panel
-       ba-panel-title="Age Data"
-       ba-panel-class="medium-panel panel-blur">
-        <dashboard-bar-chart></dashboard-bar-chart>
+    <div class="col-md-6 col-sm-12">
+		<dashboard-visitors-chart></dashboard-visitors-chart>
+		<div
+		   ba-panel
+		   ba-panel-title="Age Data"
+		   ba-panel-class="medium-panel panel-blur">
+			<dashboard-line-chart class="ng-scope"></dashboard-line-chart>
+		</div>
+	</div>
+	<div class="col-md-6 col-sm-12 col-xs-12">
+			<div 
+			   ba-panel
+			   ba-panel-title="Ethnicity Data"
+			   ba-panel-class="panel-blur">
+			  <dashboard-polar-chart></dashboard-polar-chart>
+		  </div>
     </div>
 </div>
 
 <div class="row" style=" margin-left: unset;margin-right: unset;">
-  <div class="col-xlg-8 col-lg-7 col-md-6 col-sm-12 col-xs-12">
-    <div class="row">
-      <div 
-           ba-panel
-           ba-panel-title="Ethnicity Data"
-           ba-panel-class="panel-blur">
-          <dashboard-polar-chart></dashboard-polar-chart>
-      </div>
-    </div>
-  </div>
-    <div class="col-xlg-4 col-lg-5 col-md-6 col-sm-12 col-xs-12">
-        <div class="row">
-            <dashboard-visitors-chart></dashboard-visitors-chart>
-        </div>
-    </div>    
+  
+        
 </div>

@@ -2,48 +2,50 @@
 
   <div class="row">
     <div class="col-md-12">
+	<div
+          ba-panel
+          ba-panel-class="horizontal-tabs tabs-panel">
         <uib-tabset active="$tabSetStatus.activeTab">
             <uib-tab heading="Unattended">
-                <div ba-panel ba-panel-title="Unattended" ba-panel-class="with-scroll">
-                    <div class="col-xlg-3 col-md-4 col-sm-6 tabset-group" ng-repeat="data in unattended" ba-panel ba-panel-class="panel-primary"
-		ba-panel-title="<span class='i-{{data.emotion}}'></span> Zone :{{data.zone}} <span class='pull-right'>YOB : {{data.yob}}</span>" >
-                        
-                        <div class="form-group"><img ng-src="data:image/png;base64,{{data.image_base}}" class="img-thumbnail" style="width: 100%; height: auto; max-height: 250px; object-fit: contain;"></div>
-                         
-                         <p>
-                             <strong>Gender: </strong> {{data.gender}}
-                                         </p> 
-                                         <p>
-                             <strong>Ethnicity: </strong> {{data.ethnicity}}
-                                         </p> 
-                         
+                <div class="row">
+                    <div class="col-xlg-3 col-lg-3 col-md-4 col-sm-6 tabset-group" ng-repeat="data in unattended" ba-panel ba-panel-class="no-padd" >
+                        <img ng-src="data:image/png;base64,{{data.image_base}}" style="width: 100%; height: 300px; object-fit: cover;">
+						<div class="panel-header">
+							Zone :{{data.zone}} 
+							<button type="button" data-ng-hide="editMode" data-ng-click="editMode = true" class="btn btn-info btn-xs pull-right">Show Emotion</button>
+							<span class="pull-right" data-ng-show="editMode"><i class='i-{{data.emotion}}' ></i> {{data.emotion}}</span>
+						</div>
+						<div class="panel_data">
+							<p> <span>Year Of Birth :</span>  <span class="text-capitalize">{{data.yob}}</span></p> 
+							<p> <span>Gender: </span> <span class="text-capitalize">{{data.gender}}</span> </p> 
+							<p> <span>Ethnicity: </span> <span class="text-capitalize">{{data.ethnicity}}</span> </p>                          
+						</div>
+						<button class="btn btn-default btn-xs top_button" ng-click="removeEventsUnattended(data.id,$index)" ><i class="fa fa-close"></i></button>
                    </div>
                 </div>
             </uib-tab>
             <uib-tab heading="Gallery Visit">
-                <div ba-panel ba-panel-title="Gallery Visit" ba-panel-class="with-scroll">
-                    <div class="col-xlg-3 col-md-4 col-sm-6 tabset-group" ng-repeat="data1 in galleryvisit" ba-panel ba-panel-class="panel-primary"
-		ba-panel-title="<span class='i-{{data1.emotion}}'></span> Zone :{{data1.zone}} <span class='pull-right'>YOB : {{data1.name}}</span>" >
-                    
-
-                          <div class="form-group"><img ng-src="data:image/png;base64,{{data1.image_base}}"  class="img-thumbnail" style="width: 100%; height: auto"></div>
-                          <p>
-                            <strong>Gallery : </strong> {{data1.gallery}}
-                          </p>
-                          <p>
-                            <strong>Gender: </strong>{{data1.gender}}
-                          </p> 
-                          <p>
-                            <strong>Ethnicity: </strong>{{data1.ethnicity}}
-                          </p> 
-                          <p>
-                            <strong>Age : </strong>{{data1.age}}
-                          </p> 
+                <div class="row">
+                    <div class="col-xlg-3 col-md-4 col-sm-6 tabset-group" ng-repeat="data1 in galleryvisit" ba-panel ba-panel-class="no-padd" >
+						<img ng-src="data:image/png;base64,{{data1.image_base}}" style="width: 100%; height: 300px; object-fit: cover;">
+						<div class="panel-header">
+							Zone :{{data1.zone}} 
+							<button type="button" data-ng-hide="editMode" data-ng-click="editMode = true" class="btn btn-info btn-xs pull-right">Show Emotion</button>
+							<span class="pull-right" data-ng-show="editMode"><i class='i-{{data1.emotion}}' ></i> {{data1.emotion}}</span>
+						</div>
+						<div class="panel_data">
+								<p> <span>Name : </span>  <span class="text-capitalize">{{data1.name}}</span></p>
+							<p> <span>Gallery : </span>  <span class="text-capitalize">{{data1.gallery}}</span></p> 
+							<p> <span>Gender: </span> <span class="text-capitalize">{{data1.gender}}</span> </p> 
+							<p> <span>Ethnicity: </span> <span class="text-capitalize">{{data1.ethnicity}}</span> </p>                          
+							<p> <span>Age: </span> <span class="text-capitalize">{{data1.age}}</span> </p>                          
+						</div>
+						<button class="btn btn-default btn-xs top_button" ng-click="removeEventsGallery(data.id,$index)" ><i class="fa fa-close"></i></button>                           
                     </div>
                 </div>
             </uib-tab>
         </uib-tabset>
-      
+      </div>
       </div>
     </div>
   </div>

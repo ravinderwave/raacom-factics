@@ -72,12 +72,12 @@
                     {
                         data: array,
                         backgroundColor: [
-                            dashboardColors.silverTree,
-                            dashboardColors.gossip,
+                            dashboardColors.semiwhite,
+                            dashboardColors.transwhite,
                             dashboardColors.surfieGreen
                         ],
                         hoverBackgroundColor: [
-                            colorHelper.shade(dashboardColors.silverTree, 15),
+                            dashboardColors.white,
                             colorHelper.shade(dashboardColors.gossip, 15),
                             colorHelper.shade(dashboardColors.surfieGreen, 15)
                         ],
@@ -103,6 +103,7 @@
                 }
             });
         }
+        
         
         function count_values(array){
             array.sort();

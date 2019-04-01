@@ -11,7 +11,7 @@
   /** @ngInject */
   function dashboardMorrisCtrl($scope, $window, baConfig, $http) {
     var layoutColors = baConfig.colors;
-    $scope.colors = [layoutColors.primary, layoutColors.warning, layoutColors.danger, layoutColors.info, layoutColors.success, layoutColors.primaryDark];
+    $scope.colors = [layoutColors.blueStone, layoutColors.surfieGreen, layoutColors.silverTree, layoutColors.gossip, layoutColors.primaryDark, layoutColors.transwhite];
     
     var config = {
         headers : {
@@ -43,21 +43,23 @@
         var maledata = response.data.male;
         var femaledata = response.data.female; 
         var visitorsdata = response.data.visitor; 
+        var dateData = response.data.date;
         var timeData = response.data.time;
         var value = [];
+		//console.log(response);
         for(var i=0; i<timeData.length ;i++){
-            value.push({y:timeData[i], a:maledata[i], b:femaledata[i], c:visitorsdata[i]});
+            value.push({y:dateData[i] , a:maledata[i], b:femaledata[i], c:visitorsdata[i]});
         }
         
         var morris_value = JSON.stringify(value);
         
-        morris_data(morris_value);
-        
+        morris_data(morris_value);        
         $scope.morris_value;
     });
     
     function morris_data(morris_value){
         $scope.areaData = morris_value;
+		
     }
     
     angular.element($window).bind('resize', function () {

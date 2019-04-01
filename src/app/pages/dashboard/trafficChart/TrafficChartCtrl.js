@@ -9,7 +9,7 @@
       .controller('TrafficChartCtrl', TrafficChartCtrl);
 
   /** @ngInject */
-  function TrafficChartCtrl($scope, baConfig, colorHelper, $http) {
+  function TrafficChartCtrl($scope, baConfig, colorHelper, $http,$interval) {
 
       $scope.transparent = baConfig.theme.blur;
       var dashboardColors = baConfig.colors.dashboard;
@@ -63,6 +63,54 @@
             
             emotion_data(unique, emotions.length, array1, percentage);  
         });
+
+
+        $interval(function(){
+
+        var data = JSON.stringify({
+            "apiKey":"445dcfa295847ebbb77011ab264b4aa9",
+            "command":"Insert",
+            "lang":"en",
+            "deviceId":"en",
+            "viewData":{
+               "fieldSet":{
+                 "name":"Test"
+               },
+               "whereFieldset":[
+               ],
+               "paging":{
+                  "Offset":0,
+                  "Limit":10
+               }
+            }
+        });
+        var array=[];
+        var array1=[];
+		var percentage=[];
+        $http.get('http://raacom-factics-api.com/captured', data, config).
+        then(function(response) {
+            var emotions = response.data;
+            
+            for(var i=0; i<emotions.length ;i++){
+              array.push(emotions[i]['emotion']);
+            }
+
+            var unique = array_unique(array);
+            
+            var count_emotions = count_values(array);
+            //alert(unique[0]);
+            for(var j=0; j<unique.length; j++){
+                var un = unique[j];
+				array1.push(count_emotions[un]*1);
+				
+				var per = (count_emotions[un]*1*100)/emotions.length;
+				
+				percentage.push(Math.round(per));
+            }
+            
+            emotion_data(unique, emotions.length, array1, percentage);  
+        });
+        },10000);
         
         function emotion_data(unique, total_expressions, array, percentage){
             $scope.doughnutData = {
@@ -71,13 +119,13 @@
                     {
                         data: array,
                         backgroundColor: [
-                            dashboardColors.blueStone,
                             dashboardColors.surfieGreen,
+                            dashboardColors.white,
                             dashboardColors.silverTree
                         ],
                         hoverBackgroundColor: [
-                            colorHelper.shade(dashboardColors.blueStone, 15),
                             colorHelper.shade(dashboardColors.surfieGreen, 15),
+                            colorHelper.shade(dashboardColors.white, 15),
                             colorHelper.shade(dashboardColors.silverTree, 15)
                         ],
                         percentage: percentage
