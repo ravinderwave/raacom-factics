@@ -2,10 +2,119 @@
     <div class="alert alert-error ng-scope" ng-show="webcamError" style="">
         <span>Webcam could not be started. Did you give access to it?</span>
     </div>
-    <webcam channel="channel" 
-        on-streaming="onSuccess()" 
-        on-error="onError(err)" 
-        on-stream="onStream(stream)"></webcam>
-    <button ng-click="makeSnapshot()">take picture</button>
-    <canvas id="snapshot" width="300" height="300"></canvas>
+	
+	<button type="button" id="start-video" class="capture-button">Start</button>
+	<button type="button" id="stop-video" class="stop-button">Stop</button>
+	<video autoplay></video>
+	<div ng-app="videoapp" ng-controller="VideoStreamCtrl">
+
+
+        <webcam   channel="channel"
+                on-streaming="onSuccess()"
+                on-error="onError(err)"
+                on-stream="onStream(stream)">
+        </webcam>
+        <button ng-click="makeSnapshot()">take picture</button>
+        <canvas id="snapshot" width="300" height="300"></canvas>
+    </div>
+
+    <div class="webcam" ng-transclude></div>
+
+    <div id="stream" ></div>
 </div>
+<script>
+
+	/*const start = document.querySelector('#start-video');
+	const stop = document.querySelector('#stop-video');
+	const constraints = {
+	  video: true,
+	  audio: true
+	};
+
+	const video = document.querySelector('video');
+	var streamRecorder;
+    var webcamstream;
+	window.URL = window.URL || window.webkitURL;
+    navigator.getUserMedia  = navigator.getUserMedia || 
+                            navigator.webkitGetUserMedia ||
+                            navigator.mozGetUserMedia || 
+                            navigator.msGetUserMedia;
+							   
+	function onVideoFail(e) {
+        console.log('webcam fail!', e);
+      };
+
+    function hasGetUserMedia() {
+      // Note: Opera is unprefixed.
+      return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+                navigator.mozGetUserMedia || navigator.msGetUserMedia);
+    }
+	
+	if (hasGetUserMedia()) {
+      // Good to go!
+    } else {
+      alert('getUserMedia() is not supported in your browser');
+    }
+	
+	start.onclick = function() {
+		navigator.mediaDevices.getUserMedia(constraints).
+		  then((stream) => {video.srcObject = stream});
+	}
+	
+	stop.onclick = function stop(e) {
+	  var stream = video.srcObject;
+	  var tracks = stream.getTracks();
+
+	  for (var i = 0; i < tracks.length; i++) {
+		var track = tracks[i];
+		track.stop();
+	  }
+
+	  video.srcObject = null;
+	}*/
+	
+	var webcam = angular.module('videoapp', ['webcam'])
+	.controller('VideoStreamCtrl', function ($scope) {
+		var _video = null,
+		patData = null;
+
+		$scope.patOpts = { x: 0, y: 0, w: 25, h: 25 };
+
+		$scope.channel = {};
+
+		$scope.webcamError = false;
+		$scope.onError = function (err) {
+
+		};
+
+		$scope.onSuccess = function () {
+
+			_video = $scope.channel.video;
+			$scope.$apply(function () {
+				$scope.patOpts.w = _video.width;
+				$scope.patOpts.h = _video.height;
+				$scope.showDemos = true;
+			});
+		};
+
+		$scope.onStream = function (stream) {
+		  //i think it is here i need to add some code for streaming
+		};
+
+		$scope.makeSnapshot = function () {
+
+		};
+
+		$scope.downloadSnapshot = function downloadSnapshot(dataURL) {
+			window.location.href = dataURL;
+		};
+
+		var getVideoData = function getVideoData(x, y, w, h) {
+
+		};
+
+		var sendSnapshotToServer = function sendSnapshotToServer(imgBase64) {
+			$scope.snapshotData = imgBase64;
+		};
+	});
+</script>

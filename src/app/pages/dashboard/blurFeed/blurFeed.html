@@ -1,8 +1,26 @@
-<button type="button" data-ng-click="editMode = true" class="btn btn-danger btn-xs" data-ng-hide="editMode" >Disable Video Streaming</button>
-<button type="button"  data-ng-click="editMode = false" class="btn btn-primary btn-xs" data-ng-show="editMode" >Enable Video Streaming</button>
+<div class="row">
+    <div class="col-md-12">
+	<div
+          ba-panel
+          ba-panel-class="horizontal-tabs tabs-panel">
+        <uib-tabset active="$tabSetStatus.activeTab">
+            <uib-tab heading="Live Streaming">
+				<button type="button" data-ng-click="editMode = true" class="btn btn-danger btn-xs" data-ng-hide="editMode" >Disable Video Streaming</button>
+				<button type="button"  data-ng-click="editMode = false" class="btn btn-primary btn-xs" data-ng-show="editMode" >Enable Video Streaming</button>
 
-<div class="embed-responsive embed-responsive-16by9" style="padding-bottom: 65%" ng-switch="editMode">			  
-	<iframe style="-webkit-transform: scale(0.25); transform-origin: top left; width: 400%; height: 350%;" class="embed-responsive-item" ng-switch-default ng-src="http://40.122.37.245:5000/video/1/0.5/admin:admin1234@103.48.69.199:554"></iframe>
-	
-        <iframe style="-webkit-transform: scale(0.25); transform-origin: top left; width: 400%; height: 350%;" class="embed-responsive-item" ng-switch-when=true ng-src="http://40.122.37.245:5000/video/0/0.5/admin:admin1234@103.48.69.199:554"></iframe>
+				<div class="embed-responsive embed-responsive-16by9" style="padding-bottom: 65%" ng-switch="editMode">			  
+					<iframe style="-webkit-transform: scale(0.25); transform-origin: top left; width: 400%; height: 350%;" class="embed-responsive-item" ng-switch-default ng-src="http://40.122.37.245:5000/video/1/0.5/admin:admin1234@103.48.69.199:554"></iframe>
+					
+						<iframe style="-webkit-transform: scale(0.25); transform-origin: top left; width: 400%; height: 350%;" class="embed-responsive-item" ng-switch-when=true ng-src="http://40.122.37.245:5000/video/0/0.5/admin:admin1234@103.48.69.199:554"></iframe>
+				</div>
+			</uib-tab>
+			<uib-tab heading="Web Cam">
+				<div ng-app="videoapp" ng-controller="VideoStreamCtrl">
+					<button type="button" id="start-video" class="capture-button">Start</button>
+					<button type="button" id="stop-video" class="stop-button">Stop</button>
+					<video autoplay id="videoElement" width="70%"></video>
+				</div>
+			</uib-tab>
+		</uib-tabset>
+	</div>
 </div>
